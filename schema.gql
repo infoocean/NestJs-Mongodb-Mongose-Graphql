@@ -1,0 +1,109 @@
+# ------------------------------------------------------
+# THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
+# ------------------------------------------------------
+
+"""
+A date-time string at UTC, such as 2019-12-03T09:54:33Z, compliant with the date-time format.
+"""
+scalar DateTime
+
+type Mutation {
+  createRole(input: RoleInput!): Role!
+  createUser(input: SurveyCommentReplyInput!): SurveyCommentReply!
+  deleteBook(id: ID!): SurveyCommentReply!
+  updateBook(id: ID!, input: SurveyCommentReplyInput!): SurveyCommentReply!
+}
+
+type Query {
+  book(id: ID!): SurveyCommentReply!
+  roles: [Role!]!
+  users: [SurveyCommentReply!]!
+}
+
+type Role {
+  id: ID!
+  role: String!
+}
+
+input RoleInput {
+  role: String!
+}
+
+type Survey {
+  created_at: DateTime!
+  created_by: User!
+  id: ID!
+  image_url: String!
+  name: String!
+  option_a_question: String!
+  option_b_question: String!
+  primary_question: String!
+  status: String!
+  video_url: String!
+}
+
+type SurveyComment {
+  comment: String!
+  created_at: DateTime!
+  id: ID!
+  survey_id: Survey!
+  updated_at: DateTime!
+  user_id: User!
+}
+
+type SurveyCommentLike {
+  comment_id: SurveyComment!
+  created_at: DateTime!
+  id: ID!
+  like_dislike: String!
+  user_id: User!
+}
+
+type SurveyCommentReply {
+  comment_id: SurveyComment!
+  created_at: DateTime!
+  id: ID!
+  reply_comment: String!
+  updated_at: DateTime!
+  user_id: User!
+}
+
+input SurveyCommentReplyInput {
+  comment_id: ID!
+  created_at: DateTime
+  reply_comment: String!
+  updated_at: DateTime
+  user_id: ID!
+}
+
+type SurveyQuestion {
+  created_at: DateTime!
+  created_by: User!
+  id: ID!
+  question: String!
+  survey_id: Survey!
+}
+
+type SurveyQuestionAnswer {
+  answer: String
+  created_at: DateTime!
+  id: ID!
+  primary_answer: String
+  primary_question_answer: String
+  question_id: SurveyQuestion!
+  survey_id: Survey!
+  user_id: User!
+}
+
+type User {
+  created_at: DateTime!
+  email: String!
+  first_name: String!
+  id: ID!
+  is_deleted: Float!
+  last_name: String!
+  login_with: String
+  password: String!
+  role_id: Role!
+  status: String!
+}
